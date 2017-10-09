@@ -1,0 +1,88 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HTML5模仿骇客帝国文字矩阵效果</title>
+	<!--类型-->
+<style>
+	/*通配符*/
+	*{
+		margin:0;
+		padding:0px;
+	}
+	body{
+		
+		/*指定在一个声明的所有字体属性：字体大小 字体 */
+		font:12px/100% Arial, Helvetica, sans-serif, "新宋体";
+		overflow:hidden;
+		
+	}
+</style>
+</head>
+<body>
+
+
+<!--<canvas> 图形容器-->
+<canvas id="q"></canvas>
+
+<script>
+	// window.screen  对象包含有关用户屏幕的信息。获取屏幕的信息  
+	var s = window.screen;
+	console.log(s)   //显示浏览器屏幕的可用高度，以像素记
+	// 获取屏幕的宽度为q的宽
+	var width = q.width = s.width;
+	// 获取屏幕的高度为q的高
+	var height = q.height = s.height;
+	// Array() 创建一个数组
+	// 函数：Join() 
+	// 功能：使用您选择的分隔符将一个数组合并为一个字符串 
+	// 函数：split() 
+	// 功能：使用一个指定的分隔符把一个字符串分割存储到数组 
+	// Array(256)有256个元素的空数组，join(1)将数据每个元素用1连接
+	// 起来成一个字符串（256个数组需要用255个1连接），所以就是255个1组
+	// 成的字符串，split('')将255个1分割成长度为255的数组
+	var letters = Array(256).join(1).split('');
+	console.log(letters)
+	var draw = function () {
+		// getContext() 方法返回一个用于在画布上绘图的环境。参数指定了
+		// 您想要在画布上绘制的类型。 当前只支持2d环境
+		// fillStyle  属性设置或返回用于填充绘画的颜色、渐变或模式，让背景逐渐由透明到不透明
+				q.getContext('2d').fillStyle='rgba(0,0,0,0.05)';
+				// fillRect() 方法绘制"已填充"的矩形。
+				// 4个参数的意思分别为，起始X坐标，起始Y坐标，宽度，高度。
+				q.getContext('2d').fillRect(0,0,width,height);
+				//文字颜色
+				q.getContext('2d').fillStyle='#0f0';
+				// map() 把每个元素通过函数传递到当前匹配集合中，生成包含返回值的新的 jQuery 对象
+				//JavaScript Array map方法,y_pos是值，index是数组下标 
+				letters.map(function(y_pos, index){
+					// 产生数字
+					text = Math.floor(Math.random()*10);
+					// 产生英文字母
+					// String.fromCharCode 就是把ASCII码转成字符串
+					// text = String.fromCharCode(65 + Math.floor(Math.random()*25))
+					// 产生英文字母加数字
+					// text = String.fromCharCode(48 + Math.floor(Math.random()*73)); 
+					//x_pos为字符，这里自动转化为Number 
+					x_pos = index * 10;
+					// fillText() 方法在画布上绘制填色的文本
+					// 参数的意思分别为 显示的文本、x轴坐标、y轴坐标
+					q.getContext('2d').fillText(text, x_pos, y_pos);
+					//letters里面每个字符画的位置相对于上次下降10下降位置到一定位置会返回到0  
+					//而这个一定位置为"758 + Math.random() * 1e4",随机的。  
+					//所以我们可以看到效果，当字符串第一次到底端的时候，就会有字符先后回到0。参差不齐的下降效果。  
+					//当然这不是真正的下降效果，只是在上次画的基础上下面的位置画面已。仔细看没有掉的感觉。  
+					//这里还有Demo的bug.y_pos是字符串。"1"+10="110".  
+					//这样就导致y_pos依次等于"1","110","11010","0","10"...... 
+					letters[index] = (y_pos > 758 + Math.random() * 1e4) ? 0 : y_pos + 10;
+			});
+		};
+// 用setInterval(draw, 33) 设定刷新间隔33秒
+setInterval(draw, 33);
+</script>
+
+</body>
+</html>
+<!--http://blog.csdn.net/samwang822/article/details/10033181-->

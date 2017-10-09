@@ -1,0 +1,123 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>点击抽奖</title>
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <style>
+        #box {
+            width: 45%;
+            /*perspective:1200px;*/
+            float: left;
+            margin-left: 30%;
+        }
+        
+        .content {
+            float: left;
+            width: 30%;
+            border: 1px solid red;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: red;
+        }
+        
+        .content-click {
+            background: rgba(139, 0, 0, 0.6);
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .content-click:hover {
+            background: rgba(139, 0, 0, 1);
+        }
+        
+        .active {
+            background: goldenrod;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div class="content content-1">1</div>
+        <div class="content content-2">2</div>
+        <div class="content content-3">3</div>
+        <div class="content content-8">8</div>
+        <div class="content content-click">
+            <div id="text">
+                <div>点击抽奖</div>
+                <div>您还有<span class="number">3</span>次抽奖机会</div>
+            </div>
+        </div>
+        <div class="content content-4">4</div>
+        <div class="content content-7">7</div>
+        <div class="content content-6">6</div>
+        <div class="content content-5">5</div>
+    </div>
+    <script>
+        // var contents = document.querySelectorAll('.content')
+        // contents.forEach(function (e) {
+        //     e.style.height = e.clientWidth + 'px'
+        // })
+        // 
+        // $(window).resize(function () {
+        //     contents.forEach(function (e) {
+        //         e.style.height = e.clientWidth + 'px'
+        //         console.log(e.clientWidth)
+        //     })
+        // })
+        $('.content').height($('.content').width()+'px')
+        $(window).resize(function(){
+            $('.content').height($('.content').width()+'px')
+        })
+        var t = true
+        $('.content-click').click(function () {
+            if (t) {
+                t = false;
+                var prize = Math.ceil(Math.random() * ($('.content').length - 1));
+                if (prize == 8) {
+                    prize = Math.ceil(Math.random() * ($('.content').length - 2));
+                }
+                if ($('.number').text() > 0) {
+                    $('.number').text($('.number').text() - 1)
+                    prize += 16
+                    for (var i = 1; i <= prize; i++) {
+                        setTimeout(time(i), 6 * i * i);
+                    }
+                    setTimeout(function () {
+                        t = true;
+                    }, 6 * prize * prize)
+                } else {
+                    alert('您没有抽奖机会了')
+                }
+            }
+        })
+        function time(a) {
+            return function () {
+                if (a > 8) {
+                    // parseInt():解析一个字符串返回一个整数
+                    a = parseInt(a % 8)
+                    if (a == 0) {
+                        a = 8
+                    }
+                }
+                $('.content').removeClass('active');
+                $('.content-' + a).addClass('active');
+                console.log(a)
+            }
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>表白系统！！！</title>
+    
+    <style>
+        #aa {
+            height: auto;
+            width: 520px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="aa"></p>
+    <div style="display:none" id="w">
+        &#X3000;&#X3000;你不知道你的影子多么调皮，总在我的眼前晃动，让我不能有一刻安宁。坏男孩从早上睁开朦胧眼睛的那一刻起，到枕着你的名字入眠进入梦乡，你的影子一直陪着我。 你并不是什么地方都好，你只是什么地方都让我忘不了，我也不是什么地方都坏，只是我愿意为你把坏的地方更改，人无完人，我要感谢上天给我与你相遇的幸运，心有真心，让我们一起走进向往中的春。
+    </div>
+    <script>
+        var index = 0;
+        var word = document.getElementById("w").innerHTML;
+        function type() {
+            document.getElementById("aa").innerText = word.substring(0, index++);
+        }
+        setInterval(type, 200);
+    </script>
+</body>
+
+</html>

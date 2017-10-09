@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>图片放大镜</title>
+    <style media="screen">
+      *{
+        box-sizing: border-box;
+      }
+      #little_image {
+        width: 400px;
+        height: 400px;
+        position: absolute;
+        border: 1px solid #ccc;
+        top: 0px;
+        left: 0px;
+      }
+      #image {
+        display: block;
+        width: 400px;
+        height: 400px;
+        position: absolute;
+      }
+      #big_image {
+        width: 500px;
+        height: 500px;
+        border: 1px solid #3a6;
+        /*隐藏超出大图片容器的部分*/
+        overflow: hidden;
+        /*默认隐藏*/
+        display: none;
+        position: absolute;
+        top: 0px;
+        left: 400px;
+      }
+      #images {
+        display: block;
+        width: 1000px;
+        height: 1000px;
+        position: absolute;
+      }
+      #slider_block {
+        width: 200px;
+        height: 200px;
+        /*给滑块设置绝对定位*/
+        position: absolute;
+        border: 1px solid lightgrey;
+        cursor: all-scroll;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="little_image">
+      <img src="img/1.png" alt="" id="image"/>
+      <div id="slider_block">
+      </div>
+    </div>
+    <div id="big_image">
+      <img src="img/31.png" alt="" id="images"/>
+    </div>
+  </body>
+  <script type="text/javascript">
+    var littleImage = document.getElementById('little_image');
+    var bigImage = document.getElementById('big_image');
+    var sliderBlock = document.getElementById('slider_block');
+    //为littleImage添加鼠标移入事件
+    littleImage.onmousemove = function(event) {
+      event = event || window.event;
+      sliderBlock.style.display = "block"; //移入鼠标显示滑块
+      bigImage.style.display = "inline-block";    //移入鼠标显示bigImage
+ 
+      // 1、限定滑块的活动范围
+      var disX = event.clientX - sliderBlock.offsetWidth / 2;      //鼠标点击位置－移动块宽度的1/2
+      var disY = event.clientY - sliderBlock.offsetHeight / 2;
+     //最大移动位置就是little_image的宽度－移动块的宽度
+      var MaxDistanceX = littleImage.offsetWidth - sliderBlock.offsetWidth; 
+      var MaxDistanceY = littleImage.offsetHeight - sliderBlock.offsetHeight;
+      if (disX < 0) {
+        disX = 0;
+      } else if (disX >= MaxDistanceX) {
+        disX = MaxDistanceX
+      }
+      if (disY < 0) {
+        disY = 0;
+      } else if (disY >= MaxDistanceY) {
+        disY = MaxDistanceY;
+      }
+      // 2、通过改变滑块的left和top的属性值来让滑块随着鼠标移动
+      sliderBlock.style.left = disX + "px";
+      sliderBlock.style.top = disY + "px";
+      // 3、通过计算sliderblock在littleImage的比例，计算bigImage在大图中显示的比例
+      var scaleX = disX / MaxDistanceX;  
+      var scaleY = disY / MaxDistanceY;
+      var images = document.getElementById('images');
+      console.log(scaleX+'---'+scaleY);
+      bigImage.scrollLeft = (images.offsetWidth - bigImage.offsetWidth) * scaleX;
+      bigImage.scrollTop = (images.offsetHeight - bigImage.offsetHeight) * scaleY;
+    }
+     //添加鼠标移出事件
+    littleImage.onmouseleave = function() {
+      sliderBlock.style.display = 'none'; 
+      bigImage.style.display = 'none'; 
+    }
+  </script>
+</html>

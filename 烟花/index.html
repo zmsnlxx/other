@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>html5体验效果的烟花播放效果</title>
+<style>
+	*{
+		margin:0;
+	padding:0;
+	}
+	body{
+		background:black;
+	}
+	.audio{
+		background-color: black;
+	}
+</style>	
+</head>
+<body>
+
+<!--div用来盛放烟花-->
+<div></div>
+<!--    controls 按钮 autoplay 准备就绪就开始  loop 结束之后立马开始下一个-->
+<div class="audio">
+	<audio  autoplay loop>
+  <source src="4579.wav" type="audio/mpeg">
+
+  
+</audio> 
+</div>
+<script src="js/jquery-1.11.0.min.js"></script>
+<!--引入烟花的jquery插件-->
+<script src="js/jquery.fireworks.js"></script>
+<script>
+	// fireworks 烟花
+	$('div').fireworks({ 
+		// 控制声音(true,false)
+	//   sound: true,
+	  opacity: 1, 
+	  width: '100%', 
+	  height: '100%' 
+	});
+</script>
+</body>
+</html>

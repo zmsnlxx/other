@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <link rel="stylesheet" href="css/fakeloader.css">
+</head>
+<body>
+    
+     <div class="fakeloader"></div>
+
+     <!--引入js库-->
+      <script src="js/jquery.min.js"></script>
+      <h1>你们是最棒的</h1>
+        <script src="js/fakeloader.min.js"></script>
+        <script>
+    $(document).ready(function(){
+        // 调用fakeloader
+                $(".fakeloader").fakeLoader({
+                    timeToHide:2000,//加载效果的持续时间
+                    bgColor:"black",//可选值 'spinner1', 'spinner2', 'spinner3', 'spinner4'
+                    //, 'spinner5', 'spinner6', 'spinner7' 对应有7种效果
+                    spinner:"spinner6", //加载时的背景颜色
+                    imagePath:"images/b.gif"  //自定义的加载图片
+                });
+            });
+
+</script>
+
+
+</body>
+</html>

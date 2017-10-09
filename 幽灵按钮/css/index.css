@@ -1,0 +1,184 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+html{
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+/*body里面的内容上下居中*/
+body{
+    display: table-cell;
+    vertical-align: middle;
+    background-color: #333;
+}
+/*大盒子定宽左右居中*/
+.box{
+    position: relative;
+    width: 800px;
+    height: 280px;
+    margin: auto;
+}
+.box .link{
+    width: 205px;
+    height: 280px;
+    float: left;
+    margin:0 20px;
+}
+/*图片的过渡*/
+.box .icon{
+    width: 100%;
+    height: 190px;
+    -webkit-transition:0.2s ease-out;
+    -moz-transition:0.2s ease-out;
+    -o-transition:0.2s ease-out;
+    transition:0.2s ease-out;
+}
+/*鼠标移到图标时的动画*/
+.box .icon:hover{
+    -webkit-transform: rotate(360deg) scale(1.2);
+    -moz-transform: rotate(360deg) scale(1.2);
+    -ms-transform: rotate(360deg) scale(1.2);
+    -o-transform: rotate(360deg) scale(1.2);
+    transform: rotate(360deg) scale(1.2);
+}
+/*设置下面的方块的样式，它的边框线的透明度变化和箭头的移动的过度*/
+.box .button{
+    position: relative;
+    display: block;
+    width: 180px;
+    height: 50px;
+    margin: auto;
+    color:#2DCB70;
+    font-family: Arial;
+    font-weight: bolder;
+    line-height: 50px;
+    padding-left:20px;
+    text-decoration: none;
+    -webkit-transition:0.4s ease-out;
+    -moz-transition:0.4s ease-out;
+    -o-transition:0.4s ease-out;
+    transition:0.4s ease-out;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    border:2px solid rgba(255,255,255,0.6);
+    background:url(../img/allow.png) no-repeat 130px center;
+}
+/*设置鼠标移上去的时候方块的border和背景图（箭头）的动画*/
+.box .button:hover{
+    border:2px solid rgba(255,255,255,1);
+    background:url(../img/allow.png) no-repeat 140px center;
+}
+/*运动线条的公共样式*/
+.box .line{
+    position: absolute;
+    display: block;
+    background: none;
+    -webkit-transition:0.4s ease-out;
+    -moz-transition:0.4s ease-out;
+    -o-transition:0.4s ease-out;
+    transition:0.4s ease-out;
+}
+/*鼠标移上去时候线条背景变为白色*/
+.box .button:hover .line{
+    background: #fff;
+}
+/*分别设置四个方向的运动线条样式*/
+.box .button .line-top{
+    width: 0;
+    height: 2px;
+    top: -2px;
+    left: -100%;
+}
+.box .button:hover .line-top{
+    width: 100%;
+    height: 2px;
+    top: -2px;
+    left: 0;
+}
+.box .button .line-right{
+    width: 2px;
+    height: 0;
+    top: -100%;
+    right: -2px;
+}
+.box .button:hover .line-right{
+    width: 2px;
+    height: 100%;
+    top: 0;
+    right: -2px;
+}
+.box .button .line-bottom{
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    right: -100%;
+}
+.box .button:hover .line-bottom{
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    right: 0;
+}
+.box .button .line-left{
+    width: 2px;
+    height: 0;
+    left: -2px;
+    bottom: -100%;
+}
+.box .button:hover .line-left{
+    width: 2px;
+    height: 100%;
+    left: -2px;
+    bottom: 0;
+}
+
+/*提示框的初始状态，透明度为0，是隐藏的，以及提示框的过渡效果*/
+.box .tip{
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    -webkit-transform:translate(-50%);
+    -moz-transform:translate(-50%);
+    -ms-transform:translate(-50%);
+    -o-transform:translate(-50%);
+    transform:translate(-50%);
+    display: none;
+    padding: 0 14px;
+    opacity: 0;
+    height: 35px;
+    line-height: 35px;
+    font-size: 18px;
+    color: #fff;
+    white-space: nowrap;
+    background-color: #2DCB70;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+}
+
+/*
+ * 小三角是设置span的border制作出来的，
+ * border为透明色，只设置border-top-color
+ * 显示出来就是一个三角形
+ * */
+.box .tip span{
+    position: absolute;
+    top:35px;
+    left:0;
+    right:0;
+    margin: auto;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border:7px solid transparent;
+    border-top-color:#2DCB70;
+}

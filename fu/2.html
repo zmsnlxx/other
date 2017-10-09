@@ -1,0 +1,59 @@
+﻿<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>你到底爱不爱我？</title>
+	
+	<style>
+		.loveBox {
+			height: 200px;
+			width: 300px;
+			margin: 100px auto;
+			text-align: center;
+			border-radius: 10px;
+			box-shadow: 0 0 20px 0 #FCC8C9
+		}
+
+		h2 {
+			height: 80px;
+			line-height: 80px;
+			margin-bottom: 20px;
+			color: red
+		}
+
+		button {
+			height: 50px;
+			width: 100px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="loveBox">
+		<h2>Do you love me ??</h2>
+		<button type="button">爱！</button>
+		<button id="btn2" type="button">不爱！ </button>
+	</div>
+	<script>
+		var screen_w = document.documentElement.clientWidth;
+		var screen_h = document.documentElement.clientHeight;
+
+		var aBtn = document.getElementsByTagName('button');
+
+		aBtn[1].onmouseover = function () {
+			var l = screen_w - this.offsetWidth;
+			var t = screen_h - this.offsetHeight;
+
+			this.style.position = "absolute";
+			this.style.left = parseInt(Math.random() * l) + 'px';
+			this.style.top = parseInt(Math.random() * t) + 'px';
+		};
+		aBtn[0].onclick = function () {
+			alert("呵呵，我不爱你！！！！");
+			window.location.reload();
+		};
+	</script>
+</body>
+
+</html>

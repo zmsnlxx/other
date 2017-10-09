@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="huaban.css">
+	<title>简单画板</title>
+
+</head>
+<body>
+
+	<div class='tools'>
+    <div class='width' id='w'>粗细<input type="text" id='width' value='2' /></div>
+    <div class='color'>颜色<input type="text" id='color' value='#000000' /></div>
+
+    <div id='huabi'>画笔</div>
+    <div class='rect'>
+        <div id='r'>矩形</div> 
+	<!--输入框，放入设置矩形的四个值-->
+        <div>X0 <input type="" id='x0' /></div>
+        <div>Y0 <input type="" id='y0' /></div>
+        <div>X1 <input type="" id='x1' /></div>
+        <div>Y1 <input type="" id='y1' />
+        </div>
+        <div id='rbutton'>确定</div>
+    </div>
+    <div class='arc'>
+
+        <div id='a'>圆形</div> 
+		<!--输入框，放入设置圆形的四个值-->
+        <div>Ox <input type="" id='Ox' /></div>
+        <div>Oy <input type="" id='Oy' /></div>
+        <div> R <input type="" id='Or' /></div>
+        <div id='abutton'>确定</div>
+    </div>
+    <div id='del'>清空</div>
+</div>
+<!--<canvas> 标签只是图形容器-->
+<canvas id='huaban'></canvas>
+
+<script src="huaban.js"></script>
+</body>
+</html>
+

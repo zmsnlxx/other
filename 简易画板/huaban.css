@@ -1,0 +1,71 @@
+		* {
+	margin:0;
+	padding:0;
+	font-size:20px;
+	font-family:'微软雅黑';
+	cursor:hand;
+}
+body {
+	background:#efefef;
+	min-height:200%;
+}
+#huabi,#del,#r,#rbutton,#a,#abutton {
+	margin:2px;
+	width:50px;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	border-radius:3px;
+	background-color:#ccc;
+}
+#huabi:hover,#del:hover,#rbutton:hover,#r:hover {
+	width:60px;
+	height:35px;
+	line-height:35px;
+	background-color:black;
+	color:#ffffff;
+}
+.color,.width {
+	margin:2px;
+	width:100px;
+	height:30px;
+	line-height:30px;
+	border-radius:3px;
+	background-color:#ccc;
+}
+#color,#width,#x0,#x1,#y0,#y1,#Ox,#Oy,#Or {
+	margin:2px;
+	border:none;
+	height:25px;
+	float:right;
+	font-size:12px;
+}
+#color,#width {
+	width:55px;
+}
+#x0,#x1,#y0,#y1,#Ox,#Oy,#Or {
+	width:30px;
+}
+#huaban {
+	width:80%;
+	height:110%;
+	left:10%;
+	top:20%;
+	position:absolute;
+	background:white;
+}
+.width,.color,#r,#rbutton {
+	display:inline-block;
+}
+.rect #r,.rect #rbutton,.arc #a,.arc #abutton {
+	font-size:20px;
+}
+.rect div,.arc div {
+	display:inline-block;
+	font-size:15px;
+}
+.rect,.arc {
+	display:inline-block;
+	line-height:30px;
+	margin-right:10px;
+}

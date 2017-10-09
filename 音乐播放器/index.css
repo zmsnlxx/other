@@ -1,0 +1,144 @@
+body{
+    /*背景色;
+    !important:优先级最高；
+    如果其他地方同样设置了body的这个属性，优先选择这里的 */
+    background-color:#333333 !important;
+    width: 100%;
+    /*overflow: 溢出；hidden隐藏；超出不显示*/
+    overflow: hidden;
+    margin: 0px;
+}
+html,body{
+     height: 100%;
+}
+main{
+    /*background-image: url()*/
+    width: 300px;
+    height: 300px;
+    margin: 100px auto;
+    background-position: center center;
+    /*设置背景图的大小*/
+    background-size: 300px 300px;
+    border-radius: 11px;
+    /*设置阴影;box:盒子；shadow：阴影*/
+    box-shadow: 1px 1px 20px black;
+     
+}
+
+header{
+    width: 300px;
+    height: 96px;
+    background-color: #333333;
+    opacity: 0.9;
+    
+    /*左上、右上设置圆角半径*/
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+}
+h1{
+    /*文本颜色*/
+    font-size: 32px !important;
+    color: rgb(134, 124, 113) !important;
+    /*字体粗细；bold：粗；normal：正常*/
+    font-weight: normal;
+    margin: 0px;
+    padding-top: 10px;
+}
+h2{
+    color: rgb(134, 124, 113) !important;
+    font-weight: 300 !important;
+    margin: 0px !important;
+    font-size: 20px !important;
+}
+main progress{
+    /*背景*/
+    background-color: #444444;
+    /*边框*/
+    border: none;
+    height: 4px;
+    width: 300px;
+}
+
+/*bar:条*/
+/*webkit:safari,chrome浏览器的私有属性*/
+::-webkit-progress-bar{
+    background-color: #cc6633;
+}
+/*moz:firefox浏览器的私有属性*/
+
+::-moz-progress-bar{
+    background-color: #cc6633;
+}
+
+footer{
+    width: 300px;
+    height: 200px;
+    background-color:rgb(106,35,42);
+    /*右下、左下的圆角*/
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    opacity: 0.9;
+    text-align: center;
+}
+time{
+    font-size: 40px;
+    color: rgb(134, 124, 114);
+    font-weight: 100 ;
+    padding-top: 20px;
+    display: block;
+    font-family: "华文黑体";
+}
+/*音量的进度*/
+footer progress{
+    height: 2px;
+    width: 100px;
+    /*微调位置*/
+    position:  relative;
+    bottom: 5px;
+}
+
+.glyphicon-backward{
+    font-size: 25px ;
+    color: rgb(134, 124, 114);
+}
+
+.glyphicon-pause{
+    font-size: 40px ;
+    color: rgb(134, 124, 114);
+    padding: 40px;
+    /*微调位置*/
+    position: relative !important;
+    top: 5px !important;
+    display: block;
+}
+
+.glyphicon-play{
+    font-size: 40px ;
+    color: rgb(134, 124, 114);
+    padding: 40px;
+    /*微调位置*/
+    position: relative;
+    top: 5px;
+    display: block;
+}
+
+.glyphicon-forward{
+    font-size: 25px ;
+    color: rgb(134, 124, 114);
+}
+/*鼠标放上去的操作*/
+.glyphicon:hover{
+    color: white;
+    text-shadow: 0 0 20px white;
+}
+/*微调位置；让现在的下边距在原来的基础上
+移30px*/
+#play{
+    position:  relative;
+    bottom: 30px;
+}
+#volume{
+    position:  relative;
+    bottom: 30px;
+}

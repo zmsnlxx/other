@@ -1,0 +1,36 @@
+html,body{
+    height:100%;
+    font-family:'微软雅黑';
+}
+body{
+    background-color:#333333;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.container{
+    border:1px solid #fff;
+    color:#cccccc;
+    width:300px;
+    height:200px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.container .box{
+    width:100%;
+    text-align:center;
+}
+.container h3{
+    font-size:24px;
+}
+.btn{
+    cursor:pointer;
+    width:80%;
+    font-size:20px;
+    line-height:40px;
+    height:40px;
+    background-color:#2e962e;
+    border:0;
+    color:#fff;
+}

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <title>Are you OK?</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main {
+            width: 100%;
+            height: auto;
+        }
+        
+        .main div {
+            width: 100%;
+        }
+        
+        #float01 {
+            height: 930px;
+            background: #004
+        }
+        
+        #float02 {
+            height: 900px;
+            background: #00f
+        }
+        
+        #float03 {
+            height: 980px;
+            background: #0ff
+        }
+        
+        #float04 {
+            height: 930px;
+            background: #0ad
+        }
+        
+        #float05 {
+            height: 960px;
+            background: #0d0
+        }
+        
+        #float06 {
+            height: 970px;
+            background: #0f0
+        }
+        
+        #float07 {
+            height: 900px;
+            background: #dd4
+        }
+        
+        .floatCtro {
+            width: 60px;
+            height: 350px;
+            position: fixed;
+            left: 25px;
+            top: 10%;
+            z-index: 100
+        }
+        
+        .floatCtro p {
+            width: 60px;
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: '微软雅黑';
+            font-size: 14px;
+            color: #676767;
+            margin: 0;
+            padding: 0;
+            cursor: pointer;
+            background: #fff;
+        }
+        
+        .floatCtro a {
+            display: inline-block;
+            display: none;
+            width: 60px;
+            height: 60px;
+            margin: 10px 0 0 0;
+            background: #fff;
+            color: #000;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        
+        .floatCtro a span {
+            display: block;
+            width: 28px;
+            height: 44px;
+            line-height: 22px;
+            font-family: '微软雅黑';
+            font-size: 14px;
+            line-height: 22px;
+            text-align: center;
+            margin: 8px 16px;
+            /*_margin: -10px 0 0 16px;*/
+        }
+        
+        .floatCtro a:hover {
+            background: #000;
+            color: #fff;
+            zoom: 1;
+        }
+        
+        .floatCtro p:hover {
+            background: #c40000;
+            color: #fff;
+        }
+        
+        .floatCtro .cur {
+            background: #c40000;
+            color: #fff;
+        }
+    </style>
+
+    <script src="jquery-1.8.3.js"></script>
+</head>
+
+<body>
+    <div class="main">
+        <div id="float01" class="cur"></div>
+        <div id="float02"></div>
+        <div id="float03"></div>
+        <div id="float04"></div>
+        <div id="float05"></div>
+        <div id="float06"></div>
+        <div id="float07"></div>
+        <div id="float08"></div>
+        <div id="float09"></div>
+        <div class="floatCtro">
+            <p>导航一</p>
+            <p>导航二</p>
+            <p>导航三</p>
+            <p>导航四</p>
+            <p>导航五</p>
+            <p>导航六</p>
+            <p>导航七</p>
+            <a>
+                <font style="width:60px; height:1px; display:block"></font>
+                <span>返回顶部</span>
+            </a>
+        </div>
+    </div>
+</body>
+<script>
+    // 要实现联动效果，点击左侧导航时要调用主函数（函数逻辑主要是对比滚动距离和每个板块的相对文档位置坐标）
+    // 滚动右侧页面也要触发函数比较，给左侧导航添加相应的样式类
+    /*
+        具体样式实现可观察上面样式表，注意最后一个样式类的权重问题
+    */
+        $(function () {
+            var AllHet = $(window).height();    //窗口的高度
+            // var mainHet = $('.floatCtro').height();     //左侧导航条的高度
+            // var fixedTop = (AllHet - mainHet) / 2   //
+            //  $('div.floatCtro').css({top:fixedTop+'px'}); 
+            $('.floatCtro p').click(function () {    //导航点击的时候触发函数********
+                var ind = $('.floatCtro p').index(this) + 1;     //获取点击元素的指针，指针从0开始，要对应第一个导航  +1
+                var topVal = $('#float0' + ind).offset().top;       //获取上面每个div板块相对于当前文档的坐标，对象有top、left两个值，
+                                                                    //详见jQuery offset()函数
+                $('body,html').animate({ scrollTop: topVal }, 300)     //应用动画向上滚动，滚动距离为上面获取的坐标，动画持续时间1秒
+            })
+            $('.floatCtro a').click(function () {            //
+                $('body,html').animate({ scrollTop: 0 }, 300)  //返回顶部代码，不用animate没有动画，scrollTop值设置为0就是相对于当前文档坐标top为0
+                // $('body,html').scrollTop(0)                  //不用animate时
+            })                                                  //
+            $(window).scroll(scrolls)  //******     //jQuery的scroll滚动事件绑定，此处绑定的是window整个窗口，也可以匹配其他元素，scrolls为传入的参数，
+                                                    //触发滚动事件时调用的函数
+            scrolls()       //先调用一次函数，初始化元素位置和样式,比如刷新页面的时候调用一次函数给p导航标签添加响应的样式类、显示或隐藏返回顶部按钮
+            function scrolls() {        //定义函数
+                var f1, f2, f3, f4, f5, f6, f7;        //声明变量
+                var fixRight = $('.floatCtro p');    //导航p标签
+                var blackTop = $('.floatCtro a')     //返回顶部a标签
+                var sTop = $(window).scrollTop();       //$(window).scrollTop()返回文档窗口的滚动距离
+                f1 = $('#float01').offset().top;        //获取每一个板块相对于当前文档的坐标top值
+                f2 = $('#float02').offset().top;
+                f3 = $('#float03').offset().top;
+                f4 = $('#float04').offset().top;
+                f5 = $('#float05').offset().top;
+                f6 = $('#float06').offset().top;
+                f7 = $('#float07').offset().top;
+                
+                // console.log(f1);
+                // console.log(f2);
+                // console.log(f3);
+                // console.log(f4);
+                // console.log(f5);
+                // console.log(f6);
+                // console.log(f7);
+
+                if (sTop <= f2 - 100) {     //比较文档的滚动距离和第二个板块位置 -100的意思是提前触发判断，滚动距离第二个板块100像素的时候触发
+                    blackTop.fadeOut(300).css('display', 'none')    //.滚动距离小于第二个板块距离顶部的位置时，不显示返回顶部按钮
+                }
+                else {
+                    blackTop.fadeIn(300).css('display', 'block')    //滚动距离大于第二板块的距离时显示返回顶部按钮
+                }
+                                        //.cur样式类是设置导航块的背景和字体颜色，函数siblings()是选择同级元素的其它兄弟元素
+                if (sTop >= f1) {
+                    fixRight.eq(0).addClass('cur').siblings().removeClass('cur');
+                }                           //依次比较滚动距离和每个板块的坐标值（偏差100像素），条件成立则给相应的p导航标签加上样式类，其它的去掉类，
+                                            //eq()函数表示选择jQuery对象，参数为索引
+                if (sTop >= f2 - 100) {
+                    fixRight.eq(1).addClass('cur').siblings().removeClass('cur');
+                }
+                if (sTop >= f3 - 100) {
+                    fixRight.eq(2).addClass('cur').siblings().removeClass('cur');
+                }
+                if (sTop >= f4 - 100) {
+                    fixRight.eq(3).addClass('cur').siblings().removeClass('cur');
+                }
+                if (sTop >= f5 - 100) {
+                    fixRight.eq(4).addClass('cur').siblings().removeClass('cur');
+                }
+                if (sTop >= f6 - 100) {
+                    fixRight.eq(5).addClass('cur').siblings().removeClass('cur');
+                }
+                if (sTop >= f7 - 100) {
+                    fixRight.eq(6).addClass('cur').siblings().removeClass('cur');
+                }
+            }
+        })
+    </script>
+</html>

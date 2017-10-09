@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>可拖动窗口</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		
+		.box {
+			position: fixed;
+			top: 20px;
+			left: 20px;
+			min-width: 200px;
+			min-height: 200px;
+			border: 1px solid #666;
+			background: #fff;
+		}
+		
+		.box .title {
+			background: #ddd;
+			height: 30px;
+			min-width: 200px;
+			cursor: move;
+		}
+		
+		.box .close {
+			border: 1px solid #d08;
+			color: #d08;
+			display: block;
+			width: 18px;
+			height: 18px;
+			line-height: 20px;
+			text-align: center;
+			cursor: pointer;
+			position: absolute;
+			right: 5px;
+			top: 5px;
+			font-weight: bold;
+		}
+		
+		.con {
+			padding: 20px;
+		}
+		
+		.bg_change_size {
+			background: url('size2.png') no-repeat;
+		}
+		
+		body {
+			height: 3000px;
+			background: #f7f6f5;
+		}
+	</style>
+	<script src="jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="index.js"></script>
+</head>
+
+<body>
+	<div class="box">
+		<div class="title">&nbsp;<span class="close">X</span></div>
+		<div class="con">
+			<p>内容</p>
+		</div>
+	</div>
+	<script type="text/javascript">
+		// 页面加载执行的函数
+		$(document).ready(function () {
+			// 窗口的初始值
+			$(".box").bg_move({
+				move: '.title',
+				closed: '.close',
+				size: 6
+			});
+		});
+	</script>
+</body>
+
+</html>

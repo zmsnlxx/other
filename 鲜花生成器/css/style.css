@@ -1,0 +1,12 @@
+#canvas {
+    /*
+    *cursor：鼠标指针放在一个元素边界范围内时所用的光标形状
+    * crosshair：光标呈现为十字线
+   */
+    cursor: crosshair;
+    overflow: hidden;
+}
+
+body {
+    overflow: hidden;
+}

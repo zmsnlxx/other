@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="author" content="郭郑磊">
+    <title>验证码</title>
+    <link href="" rel="stylesheet">
+    <style>
+        /*网页验证码*/
+        #login {
+            display: inline-block;
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            margin-bottom: 20px;
+            background-color: #eee;
+            text-align: center;
+            color: red;
+        }
+
+        /*手机验证码*/
+        #getcode,#resetcode{
+            display: inline-block;
+            max-width: 110px;
+            padding: 0 8px;
+            height: 30px;
+            line-height: 30px;
+            background-color: greenyellow;
+        }
+        #resetcode{
+            background-color: lightgray;
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <!--图片验证码-->
+    <div class="one">
+        <h2>网页验证码</h2>
+        <span>验证码：</span>
+        <span id="login" onclick="show()"></span><br>
+        输入验证码：<input id="validate" type="text" placeholder="请输入验证码"><br><br>
+        <button onclick="test()">提交验证</button>
+    </div>
+
+    <!--手机验证码效果-->
+    <h2>手机验证码效果</h2>
+    <div class="two">
+        <label for="phone">联系电话：</label>
+        <input type="text" id="phone" placeholder="请输入手机号">
+        <span id="getcode" onclick="getCode(this)">获取验证码</span>
+        <span id="resetcode" style="display:none;">
+            <span id="second"></span>
+            秒后重发
+        </span><br><br>
+        <label for="code">&#x3000;验证码：</label>
+        <input type="text" id="code" placeholder="请输入验证码">
+    </div>
+
+    <script src="jquery.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
